@@ -11,7 +11,7 @@ const Header = () => {
           </svg>
         </div>
         <div>
-          <h1 className="text-[#e2e2eb] font-bold text-lg leading-none font-[Space_Grotesk] tracking-tight">AI Battle Arena</h1>
+          <h1 className="text-[#e2e2eb]  text-lg leading-7 font-pacifico tracking-[1px]">Battlify Arena</h1>
           <p className="text-[#958da1] text-[11px] font-[Manrope] leading-tight mt-0.5">Watch AIs compete for the best answer</p>
         </div>
       </div>

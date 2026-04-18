@@ -4,10 +4,10 @@ import BattleResult from './BattleResult';
 const UserMessage = ({ text }) => (
   <div className="flex justify-end mb-1">
     <div className="max-w-[60%] flex items-end gap-2">
-      <div className="bg-gradient-to-br from-[#7c3aed] to-[#0566d9] text-white px-4 py-3 rounded-2xl rounded-br-sm shadow-lg shadow-violet-900/30 text-sm font-[Manrope] leading-relaxed">
+      <div className="bg-gradient-to-br from-[#7c3aed] to-[#0566d9] text-white px-4 py-3 rounded-2xl rounded-br-sm shadow-lg shadow-violet-900/30 text-sm font-outfit leading-relaxed">
         {text}
       </div>
-      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#0566d9] flex-shrink-0 flex items-center justify-center shadow-md text-white text-xs font-bold mb-0.5">
+      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#0566d9] flex-shrink-0 flex items-center justify-center shadow-md text-white font-outfit text-xs font-bold mb-0.5">
         U
       </div>
     </div>
@@ -15,6 +15,7 @@ const UserMessage = ({ text }) => (
 );
 
 const ChatMessage = ({ message }) => {
+  console.log('ChatMessage rendering with:', message);
   return (
     <div className="mb-8">
       {/* User question */}
@@ -34,6 +35,8 @@ const ChatMessage = ({ message }) => {
 };
 
 const ChatArea = ({ messages, isLoading, messagesEndRef }) => {
+  console.log('ChatArea rendering with messages:', messages, 'isLoading:', isLoading);
+  
   if (messages.length === 0 && !isLoading) {
     // Empty state
     return (
@@ -49,8 +52,8 @@ const ChatArea = ({ messages, isLoading, messagesEndRef }) => {
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
           </svg>
         </div>
-        <h2 className="text-[#e2e2eb] text-2xl font-bold font-[Space_Grotesk] mb-2">Start a Battle</h2>
-        <p className="text-[#958da1] text-sm font-[Manrope] max-w-sm leading-relaxed mb-8">
+        <h2 className="text-[#e2e2eb] text-2xl font-bold font-outfit mb-2">Start a Battle</h2>
+        <p className="text-[#958da1] text-sm font-outfit max-w-sm leading-relaxed mb-8">
           Ask any question and watch two AI solutions compete head-to-head. A judge will evaluate and declare the winner.
         </p>
         <div className="grid grid-cols-3 gap-3 max-w-lg w-full">
@@ -60,8 +63,8 @@ const ChatArea = ({ messages, isLoading, messagesEndRef }) => {
             { label: '📊 Scored', desc: 'Detailed analytics' },
           ].map((item) => (
             <div key={item.label} className="flex flex-col items-center gap-1 px-4 py-3 rounded-xl bg-[#1e1f26]/50 border border-[#4a4455]/20">
-              <span className="text-[#e2e2eb] text-sm font-semibold font-[Space_Grotesk]">{item.label}</span>
-              <span className="text-[#958da1] text-xs font-[Manrope]">{item.desc}</span>
+              <span className="text-[#e2e2eb] text-sm font-semibold font-outfit ">{item.label}</span>
+              <span className="text-[#958da1] text-xs font-outfit ">{item.desc}</span>
             </div>
           ))}
         </div>

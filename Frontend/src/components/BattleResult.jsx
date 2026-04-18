@@ -50,7 +50,10 @@ const ScoreBadge = ({ score, isWinner }) => {
 };
 
 const JudgePanel = ({ judge }) => {
-  const { solution_1_score, solution_2_score, solution_1_reasoning, solution_2_reasoning } = judge;
+  if (!judge) {
+    return <div className="text-[#ccc3d8] p-4">Loading judge data...</div>;
+  }
+  const { solution_1_score = 0, solution_2_score = 0, solution_1_reasoning = '', solution_2_reasoning = '' } = judge;
   const winner = solution_1_score >= solution_2_score ? 1 : 2;
 
   return (
@@ -126,7 +129,32 @@ const JudgePanel = ({ judge }) => {
 };
 
 const BattleResult = ({ problem, solution_1, solution_2, judge }) => {
-  const winner = judge.solution_1_score >= judge.solution_2_score ? 1 : 2;
+  // Debug logging
+  console.log('BattleResult received:', { problem, solution_1, solution_2, judge });
+  
+  // Validate all required data
+  const hasValidData = judge && solution_1 && solution_2;
+  
+  if (!hasValidData) {
+    console.warn('Missing battle data:', { 
+      hasJudge: !!judge, 
+      hasSolution1: !!solution_1, 
+      hasSolution2: !!solution_2 
+    });
+    return (
+      <div className="mt-3 rounded-2xl p-6 border border-[#4a4455]/25 bg-[#111319]/60 text-[#ccc3d8]">
+        <p>Loading battle results...</p>
+        <p className="text-xs mt-2 opacity-50">
+          {!judge && 'Judge data '} 
+          {!solution_1 && 'Solution 1 '}
+          {!solution_2 && 'Solution 2 '}
+          not received yet
+        </p>
+      </div>
+    );
+  }
+
+  const winner = (judge?.solution_1_score || 0) >= (judge?.solution_2_score || 0) ? 1 : 2;
 
   return (
     <div className="mt-3 rounded-2xl overflow-hidden border border-[#4a4455]/25 bg-[#111319]/60 backdrop-blur-sm shadow-2xl shadow-black/40">
@@ -138,12 +166,12 @@ const BattleResult = ({ problem, solution_1, solution_2, judge }) => {
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
           </div>
-          <span className="text-[#e2e2eb] text-sm font-bold font-[Space_Grotesk] uppercase tracking-wide">Battle Result</span>
+          <span className="text-[#e2e2eb] text-sm font-bold font-outfit  uppercase tracking-[2px]">Battle Result</span>
         </div>
         <div className="flex items-center gap-1 ml-auto">
-          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#7c3aed]/15 text-[#d2bbff] border border-[#7c3aed]/20 font-[Manrope]">AI-1</span>
+          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#7c3aed]/15 text-[#d2bbff] border border-[#7c3aed]/20 font-outfit">AI-1</span>
           <span className="text-[#958da1] text-xs">vs</span>
-          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#0566d9]/15 text-[#adc6ff] border border-[#0566d9]/20 font-[Manrope]">AI-2</span>
+          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#0566d9]/15 text-[#adc6ff] border border-[#0566d9]/20 font-outfit">AI-2</span>
         </div>
       </div>
 
@@ -152,7 +180,7 @@ const BattleResult = ({ problem, solution_1, solution_2, judge }) => {
         {/* Solution 1 */}
         <div className={`p-5 ${winner === 1 ? 'bg-gradient-to-b from-[#f59e0b]/5 to-transparent' : ''}`}>
           <div className="flex items-center gap-2 mb-4">
-            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold font-[Space_Grotesk] uppercase tracking-wider border ${
+            <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold font-outfit uppercase tracking-wider border ${
               winner === 1
                 ? 'bg-[#f59e0b]/15 text-[#f59e0b] border-[#f59e0b]/30'
                 : 'bg-[#7c3aed]/15 text-[#d2bbff] border-[#7c3aed]/20'
@@ -167,12 +195,12 @@ const BattleResult = ({ problem, solution_1, solution_2, judge }) => {
             <div className="ml-auto flex items-center gap-1">
               <div className={`w-2 h-2 rounded-full ${winner === 1 ? 'bg-[#f59e0b]' : 'bg-[#7c3aed]'} opacity-60`}></div>
               <span className={`text-xs font-[Manrope] ${winner === 1 ? 'text-[#f59e0b]' : 'text-[#7c3aed]'}`}>
-                {judge.solution_1_score}/10
+                {judge?.solution_1_score || 0}/10
               </span>
             </div>
           </div>
           {/* Highlighted AI solution content */}
-          <div className="max-h-[500px] overflow-y-auto custom-scrollbar pr-1">
+          <div className="max-h-[500px] overflow-y-auto  custom-scrollbar pr-1">
             <MarkdownContent content={solution_1} />
           </div>
         </div>
@@ -195,7 +223,7 @@ const BattleResult = ({ problem, solution_1, solution_2, judge }) => {
             <div className="ml-auto flex items-center gap-1">
               <div className={`w-2 h-2 rounded-full ${winner === 2 ? 'bg-[#f59e0b]' : 'bg-[#0566d9]'} opacity-60`}></div>
               <span className={`text-xs font-[Manrope] ${winner === 2 ? 'text-[#f59e0b]' : 'text-[#0566d9]'}`}>
-                {judge.solution_2_score}/10
+                {judge?.solution_2_score || 0}/10
               </span>
             </div>
           </div>

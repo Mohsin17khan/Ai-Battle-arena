@@ -84,31 +84,31 @@ const MarkdownContent = ({ content }) => {
           );
         },
         h1: ({ children }) => (
-          <h1 className="text-[#e2e2eb] font-bold text-lg mb-3 mt-4 font-[Space_Grotesk] first:mt-0 border-b border-[#4a4455]/30 pb-2">{children}</h1>
+          <h1 className="text-[#e2e2eb] font-bold text-lg mb-3 mt-4 font-outfit first:mt-0 border-b border-[#4a4455]/30 pb-2">{children}</h1>
         ),
         h2: ({ children }) => (
-          <h2 className="text-[#e2e2eb] font-semibold text-base mb-2 mt-4 font-[Space_Grotesk] first:mt-0">{children}</h2>
+          <h2 className="text-[#e2e2eb] font-semibold text-base mb-2 mt-4 font-outfit first:mt-0">{children}</h2>
         ),
         h3: ({ children }) => (
-          <h3 className="text-[#d2bbff] font-semibold text-sm mb-2 mt-3 font-[Space_Grotesk] first:mt-0">{children}</h3>
+          <h3 className="text-[#d2bbff] font-semibold text-sm mb-2 mt-3 font-outfit first:mt-0">{children}</h3>
         ),
         p: ({ children }) => (
-          <p className="text-[#ccc3d8] text-sm leading-relaxed mb-3 font-[Manrope] last:mb-0">{children}</p>
+          <p className="text-[#ccc3d8] text-sm leading-relaxed mb-3 font-outfit last:mb-0">{children}</p>
         ),
         ul: ({ children }) => (
           <ul className="list-none space-y-1.5 mb-3 pl-0">{children}</ul>
         ),
         ol: ({ children }) => (
-          <ol className="list-decimal list-inside space-y-1.5 mb-3 pl-0 text-[#ccc3d8] text-sm font-[Manrope]">{children}</ol>
+          <ol className="list-decimal list-inside space-y-1.5 mb-3 pl-0 text-[#ccc3d8] text-sm font-outfit">{children}</ol>
         ),
         li: ({ children }) => (
-          <li className="text-[#ccc3d8] text-sm font-[Manrope] flex items-start gap-2">
+          <li className="text-[#ccc3d8] text-sm font-outfit flex items-start gap-2">
             <span className="mt-1.5 flex-shrink-0 w-1.5 h-1.5 rounded-full bg-[#7c3aed] opacity-80"></span>
             <span>{children}</span>
           </li>
         ),
         a: ({ children, href }) => (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#adc6ff] hover:text-[#d2bbff] underline underline-offset-2 transition-colors duration-150 font-[Manrope]">
+          <a href={href} target="_blank" rel="noopener noreferrer" className="text-[#adc6ff] hover:text-[#d2bbff] underline underline-offset-2 transition-colors duration-150 font-outfit">
             {children}
           </a>
         ),
@@ -119,7 +119,7 @@ const MarkdownContent = ({ content }) => {
           <em className="text-[#ffb95f] italic">{children}</em>
         ),
         blockquote: ({ children }) => (
-          <blockquote className="border-l-2 border-[#7c3aed] pl-4 my-3 text-[#958da1] italic text-sm font-[Manrope]">{children}</blockquote>
+          <blockquote className="border-l-2 border-[#7c3aed] pl-4 my-3 text-[#958da1] italic text-sm font-outfit">{children}</blockquote>
         ),
         table: ({ children }) => (
           <div className="overflow-x-auto my-3 rounded-xl border border-[#4a4455]/20">
@@ -127,7 +127,7 @@ const MarkdownContent = ({ content }) => {
           </div>
         ),
         thead: ({ children }) => (
-          <thead className="bg-[#1e1f26] text-[#ccc3d8] font-[Space_Grotesk]">{children}</thead>
+          <thead className="bg-[#1e1f26] text-[#ccc3d8] font-outfit">{children}</thead>
         ),
         tbody: ({ children }) => (
           <tbody className="divide-y divide-[#4a4455]/20">{children}</tbody>
@@ -139,7 +139,7 @@ const MarkdownContent = ({ content }) => {
           <th className="px-3 py-2 text-left text-xs uppercase tracking-wider text-[#958da1] font-semibold">{children}</th>
         ),
         td: ({ children }) => (
-          <td className="px-3 py-2 text-[#ccc3d8] font-[Manrope]">{children}</td>
+          <td className="px-3 py-2 text-[#ccc3d8] font-outfit">{children}</td>
         ),
         hr: () => (
           <hr className="my-4 border-[#4a4455]/30" />

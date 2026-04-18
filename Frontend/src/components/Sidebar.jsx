@@ -1,6 +1,9 @@
+import axios from 'axios';
 import React from 'react';
 
-const Sidebar = ({ chats, activeChatId, onSelectChat, onNewChat }) => {
+const Sidebar = ({ chats, activeChatId, onSelectChat, onNewChat, onDelete }) => {
+
+
   return (
     <aside className="w-70 min-w-[280px] max-w-[280px] h-screen flex flex-col bg-[#0d1117] border-r border-[#4a4455]/20">
       {/* Logo / Brand */}
@@ -11,7 +14,7 @@ const Sidebar = ({ chats, activeChatId, onSelectChat, onNewChat }) => {
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
           </div>
-          <span className="text-[#e2e2eb] font-bold text-base tracking-wide font-[Space_Grotesk]">AI Battle Arena</span>
+            <span className="text-[#e2e2eb] font-bold text-base  font-pacifico tracking-[1px] ">Battlify Arena</span>
         </div>
 
         {/* New Chat Button */}
@@ -52,14 +55,15 @@ const Sidebar = ({ chats, activeChatId, onSelectChat, onNewChat }) => {
                     : 'text-[#ccc3d8] hover:bg-[#1e1f26] hover:text-[#e2e2eb]'
                 }`}
               >
-                <div className="flex items-start gap-2">
+                <div className="flex relative  gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${activeChatId === chat.id ? 'text-[#7c3aed]' : 'text-[#958da1]'}`}>
                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                   </svg>
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold truncate font-[Manrope] leading-tight">{chat.title}</p>
+                  <div className="min-w-0 ">
+                    <p className="text-xs font-semibold truncate font-outfit leading-tight">{chat.title}</p>
                     <p className="text-[10px] text-[#958da1] mt-0.5 font-[Manrope]">{chat.messages.length} message{chat.messages.length !== 1 ? 's' : ''}</p>
                   </div>
+                <h5 onClick={()=> onDelete(chat.id)}  className='text-[10px] font-mono text-red-500 absolute right-0 cursor-pointer  p-1  active:scale-140 '>X</h5>
                 </div>
               </button>
             ))}

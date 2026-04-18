@@ -10,12 +10,6 @@ const ChatInput = ({ onSend, isLoading }) => {
     const trimmed = value.trim();
     if (!trimmed || isLoading) return;
 
-    // const response = await axios.post('http://localhost:3000/invoke', {
-    //    input: trimmed  
-    // }); 
-    // const data = response.data 
-    // console.log(data);
-
     onSend(trimmed);
     setValue('');
     if (textareaRef.current) {
@@ -44,7 +38,7 @@ const ChatInput = ({ onSend, isLoading }) => {
     <div className="flex-shrink-0 px-6 py-4 bg-[#111319]/80 backdrop-blur-md border-t border-[#4a4455]/20">
       <div className="max-w-6xl mx-auto">
         <form onSubmit={handleSubmit} className="relative">
-          <div className={`flex items-end gap-3 rounded-2xl bg-[#1e1f26] border transition-all duration-200 px-4 py-3 ${
+          <div className={`flex items-center gap-3 rounded-2xl bg-[#1e1f26] border transition-all duration-200 px-4 py-1 ${
             isLoading
               ? 'border-[#4a4455]/30 opacity-70'
               : 'border-[#4a4455]/30 focus-within:border-[#7c3aed]/50 focus-within:shadow-lg focus-within:shadow-violet-900/20'
@@ -66,7 +60,7 @@ const ChatInput = ({ onSend, isLoading }) => {
               placeholder={isLoading ? 'AI Battle in progress...' : 'Ask a question to start a battle... (Enter to send, Shift+Enter for new line)'}
               disabled={isLoading}
               rows={1}
-              className="flex-1 bg-transparent text-[#e2e2eb] placeholder-[#4a4455] text-sm font-[Manrope] outline-none resize-none leading-relaxed min-h-[24px] max-h-40 custom-scrollbar disabled:cursor-not-allowed"
+              className="flex-1 bg-transparent text-[#e2e2eb] placeholder-[#4a4455] text-[15px] font-outfit tracking-[1px] px-3 outline-none resize-none leading-relaxed min-h-[30px] max-h-40 custom-scrollbar disabled:cursor-not-allowed"
             />
 
             {/* Send button */}
